@@ -36,51 +36,30 @@ function onImgPreviewClick(ev) {
   if (element.nodeName !== 'IMG') {
     return;
   }
+  // console.log(element);
 
   const bigPictureUrl = element.dataset.source; //* 2.1 Отримання великого зображення
-  console.log(bigPictureUrl);
+  //* 4 Відкриття модального вікна та п.5 - Заміна значення атрибутів
 
   const instance = basicLightbox.create(`
-    <img src="${bigPictureUrl}" width="800" height="600">
+    <img src="${bigPictureUrl}" width="1280" >
 `);
 
   instance.show();
+  document.addEventListener('keydown', onKeyPress);
 }
 
-// function getUrl() {
-//   return element.dataset.source;
-// }
+//*6.1 Вішаю слухача подій на документ для клавішної події
 
-//* ПРИКЛАД ОЛЕНИ
-// //посилання на контейнер <div class="gallery"></div>
-// const galleryBox = document.querySelector('.gallery');
-
-// // додає розмітку галереї в контейнер
-// galleryBox.insertAdjacentHTML(
-//   'beforeend',
-//   createImgGalleryMarkup(galleryItems),
-// );
-
-// galleryBox.addEventListener('click', event => {
-//   //зображення обгорнуте посиланням, по кліку за замовчуванням користувач буде перенаправлений на іншу сторінку
-//   // preventDefault забороняє цю поведінку за замовчуванням.
-//   event.preventDefault();
-// });
-
-// // створює розмітку галереї за шаблоном з об'єкта galleryItems
-// function createImgGalleryMarkup(images) {
-//   return images
-//     .map(({ original, preview, description }) => {
-//       return `<div class="gallery__item">
-//   <a class="gallery__link" href="${original}">
-//     <img
-//    class="gallery__image"
-//    src="${preview} "
-//    data-source="${original}"
-//    alt="${description}"
-//     />
-//   </a>
-//    </div>`;
-//     })
-//     .join('');
-// }
+function onKeyPress(e) {
+  if (e.code === 'Escape') {
+    document.removeEventListener('keydown', onKeyPress);
+  } else {
+    return;
+  }
+  const largePicture = document.querySelector('.basicLightbox');
+  if (largePicture) {
+    largePicture.remove();
+  }
+  console.log(e);
+}
