@@ -39,17 +39,17 @@ function onImgPreviewClick(ev) {
   // console.log(element);
 
   const bigPictureUrl = element.dataset.source; //* 2.1 Отримання великого зображення
-  //* 4 Відкриття модального вікна та п.5 - Заміна значення атрибутів
+  // 4 Відкриття модального вікна та п.5 - Заміна значення атрибутів
 
   const instance = basicLightbox.create(`
     <img src="${bigPictureUrl}" width="1280" >
 `);
 
   instance.show();
+
+  //6.1 Вішаю слухача подій на документ для клавішної події
   document.addEventListener('keydown', onKeyPress);
 }
-
-//*6.1 Вішаю слухача подій на документ для клавішної події
 
 function onKeyPress(e) {
   if (e.code === 'Escape') {

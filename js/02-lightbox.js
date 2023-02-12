@@ -6,9 +6,6 @@ import { galleryItems } from './gallery-items.js';
 //*1.1 Знаходжу елемент галареї
 const galleryEl = document.querySelector('.gallery');
 
-//* 1.2 Вішаю слухача подій на galleryEl
-galleryEl.addEventListener('click', callback);
-
 //* 1.3 Створюю функцію, яка створює шаблон
 function createsMarkup(array) {
   return array
@@ -23,7 +20,7 @@ function createsMarkup(array) {
 galleryEl.insertAdjacentHTML('beforeend', createsMarkup(galleryItems));
 
 const lightbox = new SimpleLightbox('.gallery a', {
-  captionData: 'alt',
-  captionDelay: 1000,
+  captionsData: 'alt',
+  captionDelay: 250,
   loop: true,
 });
